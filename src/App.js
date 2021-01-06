@@ -16,13 +16,27 @@ function App() {
         setNextPage(res.next);
         setPrevPage(res.previous);
       })
+
+    // Scroll to top on next page
+    window.scrollTo(0, 0)
+
   }, [currentPage]);
+
+  const goToNextPage = () => {
+    setCurrentPage(nextPage);
+  }
+
+  const goToPrevPage = () => {
+    setCurrentPage(prevPage);
+  }
 
   return (
     <div className="App">
+      <h1>Pokedex</h1>
       <PokemonList pokeList={pokeList} />
       <div>
-        <a>a</a>
+        <button className='page_button' id='prev' onClick={goToPrevPage}>Prev</button>
+        <button className='page_button' id='next' onClick={goToNextPage}>Next</button>
       </div>
     </div>
   );
